@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: smart-farm-api
+    env: node
+    region: ohio
+    plan: free
+    buildCommand: cd server && npm install
+    startCommand: cd server && node src/server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_ACCESS_SECRET
+        sync: false
+      - key: JWT_REFRESH_SECRET
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+      - key: PORT
+        value: 10000
+
+  - type: static
+    name: smart-farm-client
+    region: ohio
+    buildCommand: cd client && npm install && npm run build
+    staticPublishPath: client/dist
+    envVars:
+      - key: VITE_API_URL
+        sync: false
+    headers:
+      - path: /*
+        headers:
+          - key: X-Frame-Options
+            value: DENY
