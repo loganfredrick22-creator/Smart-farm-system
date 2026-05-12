@@ -5,6 +5,7 @@ import { HiOutlineUserGroup, HiOutlineHomeModern, HiOutlineCurrencyDollar, HiOut
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler } from 'chart.js';
 import { livestockAPI, cropAPI, financeAPI, healthAPI, alertAPI } from '../../services/api';
+import { formatKES } from '../../utils/format';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler);
 
@@ -83,8 +84,8 @@ const DashboardPage = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <StatCard icon={HiOutlineUserGroup} label="Total Livestock" value={stats.livestock} color="bg-primary-600" link="/livestock" />
         <StatCard icon={HiOutlineHomeModern} label="Active Crops" value={stats.crops} color="bg-green-600" link="/crops" />
-        <StatCard icon={HiOutlineCurrencyDollar} label="Income (MTD)" value={`$${stats.income.toLocaleString()}`} color="bg-blue-600" link="/finance" />
-        <StatCard icon={HiOutlineCurrencyDollar} label="Expenses (MTD)" value={`$${stats.expenses.toLocaleString()}`} color="bg-orange-600" link="/finance" />
+        <StatCard icon={HiOutlineCurrencyDollar} label="Income (MTD)" value={formatKES(stats.income)} color="bg-blue-600" link="/finance" />
+        <StatCard icon={HiOutlineCurrencyDollar} label="Expenses (MTD)" value={formatKES(stats.expenses)} color="bg-orange-600" link="/finance" />
         <StatCard icon={HiOutlineHeart} label="Open Health Cases" value={stats.openCases} color="bg-red-600" link="/vet" />
         <StatCard icon={HiOutlineHeart} label="Pending Alerts" value={stats.alerts} color="bg-yellow-600" link="/alerts" />
       </div>

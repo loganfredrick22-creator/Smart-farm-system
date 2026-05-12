@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTransactions, createTransaction } from '../../store/slices/financeSlice';
 import toast from 'react-hot-toast';
+import { formatKES } from '../../utils/format';
 
 const FinancePage = () => {
   const dispatch = useDispatch();
@@ -58,7 +59,7 @@ const FinancePage = () => {
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">Amount ($)</label>
+            <label className="block text-sm font-medium mb-1">Amount (KSh)</label>
             <input type="number" step="0.01" className="input-field" required value={form.amount} onChange={(e) => setForm({ ...form, amount: e.target.value })} />
           </div>
           <div>
@@ -99,7 +100,7 @@ const FinancePage = () => {
                       <td className="py-3 capitalize">{tx.category.replace(/_/g, ' ')}</td>
                       <td className="py-3 text-gray-500">{tx.description || '-'}</td>
                       <td className={`py-3 text-right font-medium ${tx.type === 'income' ? 'text-green-600' : 'text-red-600'}`}>
-                        {tx.type === 'income' ? '+' : '-'}${tx.amount.toLocaleString()}
+                        {tx.type === 'income' ? '+' : '-'}{formatKES(tx.amount)}
                       </td>
                     </tr>
                   ))}

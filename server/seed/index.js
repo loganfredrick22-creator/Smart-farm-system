@@ -40,7 +40,7 @@ const seed = async () => {
 
     const farm = await Farm.create({
       name: 'Green Valley Farm', ownerId: farmer._id,
-      address: { city: 'Springfield', state: 'IL', country: 'US' },
+      address: { city: 'Nairobi', state: 'Nairobi', country: 'KE' },
       size: 150, sizeUnit: 'acres',
     });
 
@@ -55,12 +55,12 @@ const seed = async () => {
     ]);
 
     await Transaction.insertMany([
-      { farmId: farm._id, createdBy: farmer._id, type: 'income', category: 'livestock_sale', amount: 4500, description: 'Sold 2 cattle', date: new Date('2024-01-15') },
-      { farmId: farm._id, createdBy: farmer._id, type: 'income', category: 'milk_sale', amount: 1200, description: 'Monthly milk sales', date: new Date('2024-01-20') },
-      { farmId: farm._id, createdBy: farmer._id, type: 'expense', category: 'feed', amount: 800, description: 'Winter feed purchase', date: new Date('2024-01-10') },
-      { farmId: farm._id, createdBy: farmer._id, type: 'expense', category: 'vet_care', amount: 350, description: 'Vaccination program', date: new Date('2024-01-05') },
-      { farmId: farm._id, createdBy: farmer._id, type: 'income', category: 'crop_sale', amount: 3200, description: 'Corn harvest sale', date: new Date('2024-02-01') },
-      { farmId: farm._id, createdBy: farmer._id, type: 'expense', category: 'supplies', amount: 500, description: 'Fencing materials', date: new Date('2024-02-10') },
+      { farmId: farm._id, createdBy: farmer._id, type: 'income', category: 'livestock_sale', amount: 450000, description: 'Sold 2 Friesian cows', date: new Date('2024-01-15') },
+      { farmId: farm._id, createdBy: farmer._id, type: 'income', category: 'milk_sale', amount: 185000, description: 'Monthly milk sales to cooperative', date: new Date('2024-01-20') },
+      { farmId: farm._id, createdBy: farmer._id, type: 'expense', category: 'feed', amount: 95000, description: 'Dairy meal & hay purchase', date: new Date('2024-01-10') },
+      { farmId: farm._id, createdBy: farmer._id, type: 'expense', category: 'vet_care', amount: 35000, description: 'Vaccination & deworming program', date: new Date('2024-01-05') },
+      { farmId: farm._id, createdBy: farmer._id, type: 'income', category: 'crop_sale', amount: 320000, description: 'Maize harvest sale at Kathonzweni', date: new Date('2024-02-01') },
+      { farmId: farm._id, createdBy: farmer._id, type: 'expense', category: 'supplies', amount: 45000, description: 'Fencing materials - Nairobi Hardware', date: new Date('2024-02-10') },
     ]);
 
     await Alert.insertMany([

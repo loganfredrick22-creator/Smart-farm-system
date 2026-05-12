@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchHealthRecords } from '../../store/slices/healthSlice';
-import { livestockAPI } from '../../services/api';
+import { livestockAPI, healthAPI } from '../../services/api';
 import toast from 'react-hot-toast';
 
 const VetPage = () => {
@@ -25,7 +25,6 @@ const VetPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { default: { healthAPI } } = await import('../../services/api');
       await healthAPI.create(form);
       toast.success('Health record created');
       setShowForm(false);
