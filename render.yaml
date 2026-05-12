@@ -4,8 +4,9 @@ services:
     env: node
     region: ohio
     plan: free
-    buildCommand: cd server && npm install
-    startCommand: cd server && node src/server.js
+    rootDir: server
+    buildCommand: npm install && npm run build --if-present
+    startCommand: node src/server.js
     envVars:
       - key: NODE_ENV
         value: production
@@ -23,8 +24,9 @@ services:
   - type: static
     name: smart-farm-client
     region: ohio
-    buildCommand: cd client && npm install && npm run build
-    staticPublishPath: client/dist
+    rootDir: client
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
     envVars:
       - key: VITE_API_URL
         sync: false
